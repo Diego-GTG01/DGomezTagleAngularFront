@@ -1,31 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../Services/usuario-service';
 import { UsuarioModel } from '../../Interfaces/UsuarioModel';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-component',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './usuario-component.html',
-  styleUrl: './usuario-component.css',
+  styleUrls: ['./usuario-component.css'],
 })
-export class UsuarioComponent {
+export class UsuarioComponent implements OnInit {
 
-  public usuarios : UsuarioModel[] =[];
-  constructor (private usuarioService: UsuarioService){}
-  ngOnInit(): void{
-    this.GetAll();
+  public usuarios: UsuarioModel[] = [];
+
+  constructor(
+    private usuarioService: UsuarioService,
+    private router : Router,
+
+  ) {}
+
+  ngOnInit(): void {
+    this.GetAll(); 
   }
-  GetAll(){
+
+  GetAll() {
     this.usuarioService.getAll().subscribe(
-      data =>{
-        this.usuarios= data.Objects;
+      data => {
+        this.usuarios = data.Objects;
         console.log(this.usuarios);
-        
       },
-      error=>{
-        console.log(error)
+      error => {
+        console.log(error);
       }
-    )
+    );
   }
-
+  GetById(idUsuario : Number) {
+    
+    this.router.navigate(['/usuario/' + idUsuario]);
+  }
+  AddUsuario(){
+    this.router.navigate(['/usuario/form']);
+  }
+    
 }

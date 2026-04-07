@@ -15,6 +15,7 @@ export interface UsuarioModel {
     Telefono : string,
     Celular : string,
     CURP : string,
+    UltimoAcceso : Date,
     Activo : number,
     Rol : RolModel,
     Direcciones : DireccionModel[]

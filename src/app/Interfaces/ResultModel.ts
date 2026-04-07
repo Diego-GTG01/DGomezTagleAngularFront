@@ -1,7 +1,7 @@
 export interface ResultModel<T = any> {
-    correct: boolean;
-    messageError: string;
-    exception: any;
-    object: T;  
+    Correct: boolean;
+    MessageError: string;
+    Exception: any;
+    Object: T;  
     Objects: T[]; 
 }
