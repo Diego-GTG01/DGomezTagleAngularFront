@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResultModel } from '../Interfaces/ResultModel';
 import { UsuarioModel } from '../Interfaces/UsuarioModel';
+import { Form } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +20,8 @@ export class UsuarioService {
   getById(idUsuario : Number){
     return this.http.get<ResultModel<UsuarioModel>>(this.urlBase + "/api/usuario/" + idUsuario)
   }
-  add(usuario : UsuarioModel) : Observable<ResultModel<UsuarioModel>>{
-    return this.http.post<ResultModel<UsuarioModel>>(this.urlBase + "/api/usuario", usuario);
+  add(formData : FormData) : Observable<ResultModel<UsuarioModel>>{
+    return this.http.post<ResultModel<UsuarioModel>>(this.urlBase + "/api/usuario", formData);
   }
   
 }

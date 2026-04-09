@@ -1,0 +1,200 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-xl-10">
+      
+      <div class="text-center text-white mb-5">
+        <h1 class="display-5 fw-bold"><i class="bi bi-person-plus-fill me-3"></i>Registro de Usuario</h1>
+        <p class="lead">Complete el formulario para dar de alta un nuevo perfil en el sistema.</p>
+      </div>
+
+      <form [formGroup]="usuarioForm" (ngSubmit)="enviarFormulario()">
+        
+        <div class="card shadow mb-4">
+          <div class="card-header bg-primary text-white py-3">
+            <h5 class="mb-0"><i class="bi bi-person-badge me-2"></i> Información Personal</h5>
+          </div>
+          <div class="card-body p-4">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label class="form-label fw-semibold">Nombre(s) *</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="bi bi-person text-primary"></i></span>
+                    <input type="text" formControlName="Nombre" class="form-control" placeholder="Ej. Juan" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-semibold">Apellido Paterno *</label>
+                <input type="text" formControlName="ApellidoPaterno" class="form-control" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-semibold">Apellido Materno</label>
+                <input type="text" formControlName="ApellidoMaterno" class="form-control" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-semibold">Fecha de Nacimiento *</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="bi bi-calendar-event"></i></span>
+                    <input type="date" formControlName="FechaNacimiento" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-4 text-center">
+                <label class="form-label fw-semibold d-block">Sexo *</label>
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" formControlName="Sexo" id="m" value="MM" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="m"><i class="bi bi-gender-male me-1"></i> Masculino</label>
+                  
+                    <input type="radio" class="btn-check" formControlName="Sexo" id="f" value="FF" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="f"><i class="bi bi-gender-female me-1"></i> Femenino</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-semibold">CURP *</label>
+                <input type="text" formControlName="CURP" class="form-control text-uppercase font-monospace" placeholder="18 caracteres" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+          <div class="col-lg-6">
+            <div class="card shadow h-100">
+              <div class="card-header bg-success text-white py-3">
+                <h5 class="mb-0"><i class="bi bi-shield-lock me-2"></i> Cuenta</h5>
+              </div>
+              <div class="card-body p-4">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Usuario *</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-at"></i></span>
+                            <input type="text" formControlName="UserName" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Contraseña *</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-key"></i></span>
+                            <input type="password" formControlName="Password" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-12" formGroupName="Rol">
+                        <label class="form-label fw-semibold">Rol asignado *</label>
+                        <select formControlName="IdRol" class="form-select border-success-subtle">
+                          <option [ngValue]="null">Seleccione un rol...</option>
+                          <option *ngFor="let rol of roles" [ngValue]="rol.IdRol">{{ rol.Nombre }}</option>
+                        </select>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card shadow h-100">
+              <div class="card-header bg-info text-white py-3">
+                <h5 class="mb-0"><i class="bi bi-telephone-inbound me-2"></i> Contacto</h5>
+              </div>
+              <div class="card-body p-4">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Correo Electrónico *</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input type="email" formControlName="Email" class="form-control" placeholder="usuario@correo.com" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Teléfono Local</label>
+                        <input type="tel" formControlName="Telefono" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Celular *</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-phone"></i></span>
+                            <input type="tel" formControlName="Celular" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Foto de Perfil</label>
+                        <input type="file" (change)="onFileChange($event)" class="form-control" />
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow mb-5" formGroupName="Direcciones">
+          <div class="card-header bg-dark text-white py-3">
+            <h5 class="mb-0"><i class="bi bi-geo-alt me-2"></i> Localización</h5>
+          </div>
+          <div class="card-body p-4">
+            <div class="row g-3 mb-4">
+              <div class="col-md-3" formGroupName="Colonia">
+                <label class="form-label fw-semibold">País</label>
+                <select class="form-select border-warning-subtle" (change)="updatePais($event)">
+                  <option value="">Seleccione...</option>
+                  <option *ngFor="let pais of paises" [value]="pais.IdPais">{{ pais.Nombre }}</option>
+                </select>
+              </div>
+              <div class="col-md-3" formGroupName="Colonia">
+                <label class="form-label fw-semibold">Estado</label>
+                <select class="form-select border-warning-subtle" (change)="updateEstado($event)">
+                  <option value="">Seleccione...</option>
+                  <option *ngFor="let estado of estados" [value]="estado.IdEstado">{{ estado.Nombre }}</option>
+                </select>
+              </div>
+              <div class="col-md-3" formGroupName="Colonia">
+                <label class="form-label fw-semibold">Municipio</label>
+                <select class="form-select border-warning-subtle" (change)="updateMunicipio($event)">
+                  <option value="0">Seleccione...</option>
+                  <option *ngFor="let municipio of municipios" [value]="municipio.IdMunicipio">{{ municipio.Nombre }}</option>
+                </select>
+              </div>
+              <div class="col-md-3" formGroupName="Colonia">
+                <label class="form-label fw-semibold">Colonia</label>
+                <select formControlName="IdColonia" class="form-select border-warning-subtle" (change)="updateColonia($event)">
+                  <option value="0">Seleccione...</option>
+                  <option *ngFor="let colonia of colonias" [attr.data-cp]="colonia.CodigoPostal" [value]="colonia.IdColonia">
+                    {{ colonia.Nombre }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Calle</label>
+                <input type="text" formControlName="Calle" class="form-control" />
+              </div>
+              <div class="col-6 col-md-2">
+                <label class="form-label fw-semibold text-truncate">Núm. Ext.</label>
+                <input type="text" formControlName="NumeroExterior" class="form-control" />
+              </div>
+              <div class="col-6 col-md-2">
+                <label class="form-label fw-semibold text-truncate">Núm. Int.</label>
+                <input type="text" formControlName="NumeroInterior" class="form-control" />
+              </div>
+              <div class="col-md-2" formGroupName="Colonia">
+                <label class="form-label fw-semibold">C.P.</label>
+                <input type="text" formControlName="CodigoPostal" class="form-control bg-light" [value]="codigoPostal" readonly />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column flex-md-row justify-content-center gap-3 pb-5">
+          <button type="button" class="btn btn-outline-primary btn-lg px-5 shadow-sm" (click)="usuarioForm.reset()">
+            <i class="bi bi-arrow-counterclockwise me-2"></i>Limpiar
+          </button>
+          <a class="btn btn-danger btn-lg px-5 shadow-sm" (click)="volverGetAll()">
+            <i class="bi bi-x-circle me-2"></i>Cancelar
+          </a>
+          <button type="submit" class="btn btn-success btn-lg px-5 fw-bold shadow" [disabled]="usuarioForm.invalid">
+            <i class="bi bi-check-circle-fill me-2"></i>Registrar Usuario
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
