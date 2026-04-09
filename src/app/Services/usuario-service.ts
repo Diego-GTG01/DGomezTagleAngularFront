@@ -23,5 +23,9 @@ export class UsuarioService {
   add(formData : FormData) : Observable<ResultModel<UsuarioModel>>{
     return this.http.post<ResultModel<UsuarioModel>>(this.urlBase + "/api/usuario", formData);
   }
+
+  updateStatus(idUsuario : Number): Observable<ResultModel<UsuarioModel>>{
+    return this.http.post<ResultModel<UsuarioModel>>(this.urlBase + "/api/usuario/status/" + idUsuario, {});
+  }
   
 }
