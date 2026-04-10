@@ -54,8 +54,14 @@ export class UsuarioComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error al actualizar el estado:', error);
-
-        alert('No se pudo cambiar el estado. Intente de nuevo.');
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo cambiar el estado. Intente de nuevo.',
+          timer: 1000,
+          showConfirmButton: false,
+          position: 'top-end',
+          toast: true,
+        });
       },
     });
   }

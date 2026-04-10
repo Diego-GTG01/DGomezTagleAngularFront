@@ -27,5 +27,8 @@ export class UsuarioService {
   updateStatus(idUsuario : Number): Observable<ResultModel<UsuarioModel>>{
     return this.http.post<ResultModel<UsuarioModel>>(this.urlBase + "/api/usuario/status/" + idUsuario, {});
   }
+  updateImagen(idUsuario : Number, formData: FormData): Observable<ResultModel<UsuarioModel>>{
+    return this.http.post<ResultModel<UsuarioModel>>(this.urlBase + "/api/usuario/imagen?idUsuario=" + idUsuario, formData);
+  }
   
 }
